@@ -1,5 +1,10 @@
 package entities;
 
+/**
+ * Class responsible for instantiate
+ * an Enemy
+ * @author Lucas Gomes
+ */
 public class Enemy {
 
     private Integer lifePoint;
@@ -24,10 +29,18 @@ public class Enemy {
         return defensePoint;
     }
 
+    /**
+     * method responsible for calculate
+     * the persona life after an attack
+     */
     public int attack(int personaHp, Enemy enemy) {
         return personaHp - enemy.getAttackPoint();
     }
 
+    /**
+     * method responsible for calculate
+     * the enemy life after a defense
+     */
     public int defend(int enemyHp, Enemy enemy) {
         return enemyHp + enemy.getDefensePoint();
     }

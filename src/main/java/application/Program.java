@@ -6,6 +6,9 @@ import java.util.*;
 
 public class Program {
 
+    /**
+     * method responsible for choose the persona
+     */
     public static void choosePersona() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What do you want to be?");
@@ -21,6 +24,9 @@ public class Program {
         }
     }
 
+    /**
+     * method responsible for choose the scenery
+     */
     public static int chooseScenery() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What scenery do you want start?");
@@ -30,6 +36,9 @@ public class Program {
         return sc.nextInt();
     }
 
+    /**
+     * method responsible for choose the inventory items
+     */
     public static Set<Equipment> chooseItems() {
         Scanner sc = new Scanner(System.in);
         Equipment archery = new Equipment(EquipmentsEnum.ARCHERY);
@@ -68,6 +77,9 @@ public class Program {
         return equipments;
     }
 
+    /**
+     * method responsible for set the abilities
+     */
     private static int userGameMode(Persona persona) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Do you want to change scenery? (1) Yes (2) No");
@@ -82,11 +94,19 @@ public class Program {
         return sc.nextInt();
     }
 
+    /**
+     * method responsible for set a random
+     * of numbers between 1 and 2 to define
+     * the enemy game mode
+     */
     private static int enemyGameMode() {
         Random value = new Random();
         return value.nextInt(2) + 1;
     }
 
+    /**
+     * method responsible print all life
+     */
     public static void showLife(Integer life, Integer enemyLife1, Integer enemyLife2) {
         System.out.println("--------------------");
         System.out.println("User Life: " + life);
@@ -95,6 +115,9 @@ public class Program {
         System.out.println("--------------------");
     }
 
+    /**
+     * method responsible for build the system battle
+     */
     public static void battle(int value, Persona persona) {
         Random random = new Random();
         Enemy enemy1 = new Enemy(random.nextInt((80 - 70) + 1) + 70, random.nextInt((15 - 10) + 1) + 10, random.nextInt((8 - 3) + 1) + 3);

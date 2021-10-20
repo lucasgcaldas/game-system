@@ -2,6 +2,12 @@ package entities;
 
 import java.util.List;
 
+/**
+ * Class that extends Persona and
+ * is responsible for instantiate
+ * a Wizard
+ * @author Lucas Gomes
+ */
 public class Wizard extends Persona {
 
     public Wizard(Integer lifePoint, Integer attackPoint, Integer defensePoint, List<EquipmentsEnum> inventory) {
@@ -26,10 +32,5 @@ public class Wizard extends Persona {
     @Override
     public int usePotions(int enemyLife, Persona wizard) {
         return (int) (enemyLife - wizard.getAttackPoint() * 1.15);
-    }
-
-    @Override
-    public void changeEquipments() {
-        super.changeEquipments();
     }
 }

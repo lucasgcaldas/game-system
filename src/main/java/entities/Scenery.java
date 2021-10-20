@@ -1,5 +1,10 @@
 package entities;
 
+/**
+ * Class responsible for instantiate
+ * a Scenery
+ * @author Lucas Gomes
+ */
 public class Scenery {
 
     private Persona persona;
@@ -24,6 +29,10 @@ public class Scenery {
         return enemies;
     }
 
+    /**
+     * method responsible for change
+     * the scenery
+     */
     public SceneryEnum changeScenery(int number) {
         if(number == 1){
             return SceneryEnum.DESERT;

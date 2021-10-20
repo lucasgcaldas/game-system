@@ -1,5 +1,10 @@
 package entities;
 
+/**
+ * Class responsible for instantiate
+ * an Equipment
+ * @author Lucas Gomes
+ */
 public class Equipment {
 
     private EquipmentsEnum name;
