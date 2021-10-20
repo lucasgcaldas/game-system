@@ -24,8 +24,8 @@ public class Enemy {
         return defensePoint;
     }
 
-    public int attack(int wizardHp, Enemy enemy) {
-        return wizardHp - enemy.getAttackPoint();
+    public int attack(int personaHp, Enemy enemy) {
+        return personaHp - enemy.getAttackPoint();
     }
 
     public int defend(int enemyHp, Enemy enemy) {

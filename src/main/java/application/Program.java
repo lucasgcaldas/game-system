@@ -2,10 +2,7 @@ package application;
 
 import entities.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Program {
 
@@ -33,16 +30,40 @@ public class Program {
         return sc.nextInt();
     }
 
-    public static List<EquipmentsEnum> chooseItems() {
+    public static Set<Equipment> chooseItems() {
         Scanner sc = new Scanner(System.in);
-        List<EquipmentsEnum> equipments = new ArrayList<>();
+        Equipment archery = new Equipment(EquipmentsEnum.ARCHERY);
+        Equipment armor = new Equipment(EquipmentsEnum.ARMOR);
+        Equipment sword = new Equipment(EquipmentsEnum.SWORD);
+        Set<Equipment> equipments = new HashSet<>();
         System.out.println("Do you want to choose items? (1) Yes (2) No");
         int yn = sc.nextInt();
         if (yn == 1) {
+            int inventorySpace = 7;
             System.out.println("What do you want to put in your inventory?");
-            System.out.println("(1)" + EquipmentsEnum.ARCHERY);
-            System.out.println("(2)" + EquipmentsEnum.ARMOR);
-            System.out.println("(3)" + EquipmentsEnum.SWORD);
+            System.out.println("*You have " + inventorySpace + " of space*");
+            while (inventorySpace > 0) {
+                System.out.println("(1) " + archery.getName() + " - occupies 3 space");
+                System.out.println("(2) " + armor.getName() + " - occupies 4 space");
+                System.out.println("(3) " + sword.getName() + " - occupies 2 space");
+                System.out.println("(4) Nothing");
+                int eq = sc.nextInt();
+                if (eq == 1) {
+                    equipments.add(archery);
+                    inventorySpace -= archery.getInventorySpace();
+                    System.out.println("Your inventory space is " + inventorySpace + " yet");
+                } else if (eq == 2) {
+                    equipments.add(armor);
+                    inventorySpace -= armor.getInventorySpace();
+                    System.out.println("Your inventory space is " + inventorySpace + " yet");
+                } else if (eq == 3) {
+                    equipments.add(sword);
+                    inventorySpace -= sword.getInventorySpace();
+                    System.out.println("Your inventory space is " + inventorySpace + " yet");
+                } else {
+                    return equipments;
+                }
+            }
         }
         return equipments;
     }
@@ -75,9 +96,7 @@ public class Program {
     }
 
     public static void battle(int value, Persona persona) {
-        chooseItems();
         Random random = new Random();
-        List<EquipmentsEnum> equipmentsEnums = new ArrayList<>();
         Enemy enemy1 = new Enemy(random.nextInt((80 - 70) + 1) + 70, random.nextInt((15 - 10) + 1) + 10, random.nextInt((8 - 3) + 1) + 3);
         Enemy enemy2 = new Enemy(random.nextInt((90 - 85) + 1) + 85, random.nextInt((20 - 15) + 1) + 15, random.nextInt((10 - 5) + 1) + 5);
         Enemy[] enemies = new Enemy[]{enemy1, enemy2};
@@ -85,6 +104,14 @@ public class Program {
         Scenery scenery = new Scenery(persona, SceneryEnum.values(), enemies);
 
         System.out.println("You are a " + persona.getClass().getSimpleName() + " and are in the " + scenery.changeScenery(value).toString());
+
+        List<Equipment> equipments = new ArrayList<>(chooseItems());
+        int improveDamage = 0;
+        int reduceDamage = 0;
+        for (int i = 0; i < equipments.size(); i++) {
+            improveDamage += equipments.get(i).getImproveDamage();
+            reduceDamage += equipments.get(i).getReduceDamage();
+        }
 
         int personaHp = persona.getLifePoint();
         hpEnemy[0] = enemies[0].getLifePoint();
@@ -96,17 +123,17 @@ public class Program {
             switch (gameMode) {
                 case 1:
                     System.out.println("You applied an attack");
-                    hpEnemy[0] = persona.attack(hpEnemy[0], persona);
-                    hpEnemy[1] = persona.attack(hpEnemy[1], persona);
+                    hpEnemy[0] = persona.attack(hpEnemy[0], persona) - improveDamage;
+                    hpEnemy[1] = persona.attack(hpEnemy[1], persona) - improveDamage;
                     break;
                 case 2:
                     System.out.println("You defended an attack");
-                    personaHp = persona.defend(personaHp, persona);
+                    personaHp = persona.defend(personaHp, persona) + reduceDamage;
                     break;
                 case 3:
                     System.out.println("You used potions to attack");
-                    hpEnemy[0] = persona.usePotions(hpEnemy[0], persona);
-                    hpEnemy[1] = persona.usePotions(hpEnemy[1], persona);
+                    hpEnemy[0] = persona.usePotions(hpEnemy[0], persona) - improveDamage;
+                    hpEnemy[1] = persona.usePotions(hpEnemy[1], persona) - improveDamage;
                     break;
                 default:
                     System.out.println("Invalid option");

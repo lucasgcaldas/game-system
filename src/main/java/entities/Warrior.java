@@ -26,7 +26,7 @@ public class Warrior extends Persona{
 
     @Override
     public int usePotions(int enemyLife, Persona warrior) {
-        return (int) (enemyLife + warrior.getAttackPoint() * 1.10);
+        return (int) (enemyLife - warrior.getAttackPoint() * 1.10);
     }
 
     @Override

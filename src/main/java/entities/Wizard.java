@@ -25,7 +25,7 @@ public class Wizard extends Persona {
 
     @Override
     public int usePotions(int enemyLife, Persona wizard) {
-        return (int) (enemyLife + wizard.getAttackPoint() * 1.10);
+        return (int) (enemyLife - wizard.getAttackPoint() * 1.15);
     }
 
     @Override

@@ -9,7 +9,7 @@ public enum EquipmentsEnum {
 
         @Override
         Integer reduceDamage() {
-            return 30;
+            return 6;
         }
 
         @Override
@@ -20,12 +20,12 @@ public enum EquipmentsEnum {
     SWORD {
         @Override
         Integer improveDamage() {
-            return 20;
+            return 8;
         }
 
         @Override
         Integer reduceDamage() {
-            return 5;
+            return 3;
         }
 
         @Override
@@ -36,7 +36,7 @@ public enum EquipmentsEnum {
     ARCHERY {
         @Override
         Integer improveDamage() {
-            return 40;
+            return 12;
         }
 
         @Override
