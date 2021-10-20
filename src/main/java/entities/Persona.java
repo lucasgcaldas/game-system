@@ -32,15 +32,19 @@ public abstract class Persona {
     public List<EquipmentsEnum> getInventory() {
         return inventory;
     }
-//
-//    public void attack(Enemy[] enemies, Persona persona) {
-//    }
-//
-//    public void defend(Enemy[] enemies, Persona persona) {
-//    }
-//
-//    public void usePotions(Enemy[] enemies, Persona persona) {
-//    }
+
+
+    public int attack(int enemyLife, Persona persona) {
+        return 0;
+    }
+
+    public int defend(int wizardHp, Persona persona) {
+        return 0;
+    }
+
+    public int usePotions(int enemyLife, Persona persona) {
+        return 0;
+    }
 
     public void changeEquipments() {
 

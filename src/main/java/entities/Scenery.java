@@ -25,9 +25,9 @@ public class Scenery {
     }
 
     public SceneryEnum changeScenery(int number) {
-        if(number == 0){
+        if(number == 1){
             return SceneryEnum.DESERT;
-        }if(number == 1){
+        }if(number == 2){
             return SceneryEnum.FOREST;
         }else{
             return SceneryEnum.RIVER;

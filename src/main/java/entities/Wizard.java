@@ -8,11 +8,13 @@ public class Wizard extends Persona {
         super(lifePoint, attackPoint, defensePoint, inventory);
     }
 
-    public int wizardAttack(int enemyLife, Wizard wizard) {
+    @Override
+    public int attack(int enemyLife, Persona wizard) {
         return enemyLife - wizard.getAttackPoint();
     }
 
-    public int wizardDefend(int wizardHp, Wizard wizard) {
+    @Override
+    public int defend(int wizardHp, Persona wizard) {
         if((wizardHp + wizard.getDefensePoint()) <= 100) {
             return wizardHp + wizard.getDefensePoint();
         }
@@ -21,7 +23,8 @@ public class Wizard extends Persona {
         }
     }
 
-    public int wizardUsePotions(int enemyLife, Wizard wizard) {
+    @Override
+    public int usePotions(int enemyLife, Persona wizard) {
         return (int) (enemyLife + wizard.getAttackPoint() * 1.10);
     }
 

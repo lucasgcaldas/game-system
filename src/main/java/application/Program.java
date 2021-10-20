@@ -14,12 +14,23 @@ public class Program {
         System.out.println("What do you want to be?");
         System.out.println("(1) Wizard");
         System.out.println("(2) Warrior");
-        int value = sc.nextInt();
-        if (value == 1) {
-            battleWizard();
+        int option = sc.nextInt();
+        if (option == 1) {
+            Wizard persona = new Wizard(100, 10, 5, null);
+            battle(chooseScenery(), persona);
         } else {
-            battleWarrior();
+            Warrior persona = new Warrior(100, 8, 3, null);
+            battle(chooseScenery(), persona);
         }
+    }
+
+    public static int chooseScenery() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What scenery do you want start?");
+        System.out.println("(1) Desert");
+        System.out.println("(2) Forest");
+        System.out.println("(3) River");
+        return sc.nextInt();
     }
 
     public static List<EquipmentsEnum> chooseItems() {
@@ -36,8 +47,14 @@ public class Program {
         return equipments;
     }
 
-    private static int userGameMode() {
+    private static int userGameMode(Persona persona) {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to change scenery? (1) Yes (2) No");
+        int value = sc.nextInt();
+        if (value == 1) {
+            battle(chooseScenery(), persona);
+        }
+        System.out.println("What do you want to do?");
         System.out.println("(1) Attack");
         System.out.println("(2) Defend");
         System.out.println("(3) Use Potions");
@@ -57,52 +74,39 @@ public class Program {
         System.out.println("--------------------");
     }
 
-    public static void battleWarrior() {
+    public static void battle(int value, Persona persona) {
         chooseItems();
+        Random random = new Random();
         List<EquipmentsEnum> equipmentsEnums = new ArrayList<>();
-        Wizard wizard = new Wizard(100, 10, 5, equipmentsEnums);
-        Enemy enemy1 = new Enemy(70, 15, 5);
-        Enemy enemy2 = new Enemy(80, 20, 2);
-        Enemy[] enemies = new Enemy[]{enemy1, enemy2};
-
-        Scenery scenery = new Scenery(wizard, SceneryEnum.values(), enemies);
-
-        while (wizard.getLifePoint() > 0 && (enemy1.getLifePoint() > 0 || enemy2.getLifePoint() > 0)) {
-            showLife(wizard.getLifePoint(), enemy1.getLifePoint(), enemy2.getLifePoint());
-        }
-    }
-
-    public static void battleWizard() {
-        chooseItems();
-        List<EquipmentsEnum> equipmentsEnums = new ArrayList<>();
-        Wizard wizard = new Wizard(100, 10, 5, equipmentsEnums);
-        Enemy enemy1 = new Enemy(70, 15, 5);
-        Enemy enemy2 = new Enemy(80, 20, 2);
+        Enemy enemy1 = new Enemy(random.nextInt((80 - 70) + 1) + 70, random.nextInt((15 - 10) + 1) + 10, random.nextInt((8 - 3) + 1) + 3);
+        Enemy enemy2 = new Enemy(random.nextInt((90 - 85) + 1) + 85, random.nextInt((20 - 15) + 1) + 15, random.nextInt((10 - 5) + 1) + 5);
         Enemy[] enemies = new Enemy[]{enemy1, enemy2};
         Integer[] hpEnemy = new Integer[2];
-        Scenery scenery = new Scenery(wizard, SceneryEnum.values(), enemies);
+        Scenery scenery = new Scenery(persona, SceneryEnum.values(), enemies);
 
-        int wizardHp = wizard.getLifePoint();
+        System.out.println("You are a " + persona.getClass().getSimpleName() + " and are in the " + scenery.changeScenery(value).toString());
+
+        int personaHp = persona.getLifePoint();
         hpEnemy[0] = enemies[0].getLifePoint();
         hpEnemy[1] = enemies[1].getLifePoint();
         int gameMode;
-        while (wizardHp > 0 && (hpEnemy[0] > 0 || hpEnemy[1] > 0)) {
-            showLife(wizardHp, hpEnemy[0], hpEnemy[1]);
-            gameMode = userGameMode();
+        while (personaHp > 0 && (hpEnemy[0] > 0 || hpEnemy[1] > 0)) {
+            showLife(personaHp, hpEnemy[0], hpEnemy[1]);
+            gameMode = userGameMode(persona);
             switch (gameMode) {
                 case 1:
                     System.out.println("You applied an attack");
-                    hpEnemy[0] = wizard.wizardAttack(hpEnemy[0], wizard);
-                    hpEnemy[1] = wizard.wizardAttack(hpEnemy[1], wizard);
+                    hpEnemy[0] = persona.attack(hpEnemy[0], persona);
+                    hpEnemy[1] = persona.attack(hpEnemy[1], persona);
                     break;
                 case 2:
                     System.out.println("You defended an attack");
-                    wizardHp = wizard.wizardDefend(wizardHp, wizard);
+                    personaHp = persona.defend(personaHp, persona);
                     break;
                 case 3:
                     System.out.println("You used potions to attack");
-                    hpEnemy[0] = wizard.wizardUsePotions(hpEnemy[0], wizard);
-                    hpEnemy[1] = wizard.wizardUsePotions(hpEnemy[1], wizard);
+                    hpEnemy[0] = persona.usePotions(hpEnemy[0], persona);
+                    hpEnemy[1] = persona.usePotions(hpEnemy[1], persona);
                     break;
                 default:
                     System.out.println("Invalid option");
@@ -113,7 +117,7 @@ public class Program {
                 switch (gameMode) {
                     case 1:
                         System.out.println("The enemy " + 1 + " applied an attack");
-                        wizardHp = enemies[0].attack(wizardHp, enemies[0]);
+                        personaHp = enemies[0].attack(personaHp, enemies[0]);
                         break;
                     case 2:
                         System.out.println("The enemy " + 1 + " defended an attack");
@@ -126,7 +130,7 @@ public class Program {
                 switch (gameMode) {
                     case 1:
                         System.out.println("The enemy " + 2 + " applied an attack");
-                        wizardHp = enemies[1].attack(wizardHp, enemies[1]);
+                        personaHp = enemies[1].attack(personaHp, enemies[1]);
                         break;
                     case 2:
                         System.out.println("The enemy " + 2 + " defended an attack");

@@ -9,16 +9,24 @@ public class Warrior extends Persona{
     }
 
 
-    public int attack(Enemy enemy, Warrior warrior) {
-        return 1;
+    @Override
+    public int attack(int enemyLife, Persona warrior) {
+        return enemyLife - warrior.getAttackPoint();
     }
 
-    public void defend(Enemy[] enemies, Warrior warrior) {
-
+    @Override
+    public int defend(int warriorHp, Persona warrior) {
+        if((warriorHp + warrior.getDefensePoint()) <= 100) {
+            return warriorHp + warrior.getDefensePoint();
+        }
+        else {
+            return 100;
+        }
     }
 
-    public void usePotions(Enemy[] enemies, Warrior warrior) {
-
+    @Override
+    public int usePotions(int enemyLife, Persona warrior) {
+        return (int) (enemyLife + warrior.getAttackPoint() * 1.10);
     }
 
     @Override
