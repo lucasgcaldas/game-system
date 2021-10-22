@@ -8,21 +8,21 @@ import java.util.List;
  * a Warrior
  * @author Lucas Gomes
  */
-public class Warrior extends Persona{
+public class Warrior extends Persona implements PersonaSkills{
 
     public Warrior(Integer lifePoint, Integer attackPoint, Integer defensePoint, List<EquipmentsEnum> inventory) {
         super(lifePoint, attackPoint, defensePoint, inventory);
     }
 
     @Override
-    public int attack(int enemyLife, Persona warrior) {
-        return enemyLife - warrior.getAttackPoint();
+    public Integer attack(Enemy enemy) {
+        return enemy.getLifePoint() - this.getAttackPoint();
     }
 
     @Override
-    public int defend(int warriorHp, Persona warrior) {
-        if((warriorHp + warrior.getDefensePoint()) <= 100) {
-            return warriorHp + warrior.getDefensePoint();
+    public Integer defend() {
+        if((this.getLifePoint() + this.getDefensePoint()) <= 100) {
+            return this.getLifePoint() + this.getDefensePoint();
         }
         else {
             return 100;
@@ -30,7 +30,7 @@ public class Warrior extends Persona{
     }
 
     @Override
-    public int usePotions(int enemyLife, Persona warrior) {
-        return (int) (enemyLife - warrior.getAttackPoint() * 1.10);
+    public Integer usePotions(Enemy enemy) {
+        return (int) (enemy.getLifePoint() - this.getAttackPoint() * 1.10);
     }
 }

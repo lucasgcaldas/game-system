@@ -8,21 +8,21 @@ import java.util.List;
  * a Wizard
  * @author Lucas Gomes
  */
-public class Wizard extends Persona {
+public class Wizard extends Persona implements PersonaSkills{
 
     public Wizard(Integer lifePoint, Integer attackPoint, Integer defensePoint, List<EquipmentsEnum> inventory) {
         super(lifePoint, attackPoint, defensePoint, inventory);
     }
 
     @Override
-    public int attack(int enemyLife, Persona wizard) {
-        return enemyLife - wizard.getAttackPoint();
+    public Integer attack(Enemy enemy) {
+        return enemy.getLifePoint() - this.getAttackPoint();
     }
 
     @Override
-    public int defend(int wizardHp, Persona wizard) {
-        if((wizardHp + wizard.getDefensePoint()) <= 100) {
-            return wizardHp + wizard.getDefensePoint();
+    public Integer defend() {
+        if((this.getLifePoint() + this.getDefensePoint()) <= 100) {
+            return this.getLifePoint() + this.getDefensePoint();
         }
         else {
             return 100;
@@ -30,7 +30,7 @@ public class Wizard extends Persona {
     }
 
     @Override
-    public int usePotions(int enemyLife, Persona wizard) {
-        return (int) (enemyLife - wizard.getAttackPoint() * 1.15);
+    public Integer usePotions(Enemy enemy) {
+        return (int) (enemy.getLifePoint() - this.getAttackPoint() * 1.15);
     }
 }

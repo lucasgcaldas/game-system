@@ -17,6 +17,9 @@ public class Enemy {
         this.defensePoint = defensePoint;
     }
 
+    public Enemy() {
+    }
+
     public Integer getLifePoint() {
         return lifePoint;
     }
@@ -30,18 +33,20 @@ public class Enemy {
     }
 
     /**
-     * method responsible for calculate
+     * Method responsible for calculate
      * the persona life after an attack
+     * @return Integer
      */
-    public int attack(int personaHp, Enemy enemy) {
-        return personaHp - enemy.getAttackPoint();
+    public Integer attack(Persona persona) {
+        return persona.getLifePoint() - this.getAttackPoint();
     }
 
     /**
-     * method responsible for calculate
+     * Method responsible for calculate
      * the enemy life after a defense
+     * @return Integer
      */
-    public int defend(int enemyHp, Enemy enemy) {
-        return enemyHp + enemy.getDefensePoint();
+    public Integer defend() {
+        return this.getLifePoint() + this.getDefensePoint();
     }
 }

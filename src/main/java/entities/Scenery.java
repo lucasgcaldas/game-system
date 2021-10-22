@@ -1,45 +1,39 @@
 package entities;
 
+import java.util.List;
+
 /**
  * Class responsible for instantiate
  * a Scenery
  * @author Lucas Gomes
  */
-public class Scenery {
+public abstract class Scenery {
 
     private Persona persona;
-    private SceneryEnum[] scenarios;
-    private Enemy[] enemies;
+    private Enemy enemy;
 
-    public Scenery(Persona persona, SceneryEnum[] scenarios, Enemy[] enemies) {
+    public Scenery(Persona persona, Enemy enemy) {
         this.persona = persona;
-        this.scenarios = scenarios;
-        this.enemies = enemies;
+        this.enemy = enemy;
     }
 
     public Persona getPersona() {
         return persona;
     }
 
-    public SceneryEnum[] getScenarios() {
-        return scenarios;
+    public Enemy getEnemy() {
+        return enemy;
     }
 
-    public Enemy[] getEnemies() {
-        return enemies;
+    public Scenery changeToDesert() {
+        return new Desert(this.getPersona(), new Enemy());
     }
 
-    /**
-     * method responsible for change
-     * the scenery
-     */
-    public SceneryEnum changeScenery(int number) {
-        if(number == 1){
-            return SceneryEnum.DESERT;
-        }if(number == 2){
-            return SceneryEnum.FOREST;
-        }else{
-            return SceneryEnum.RIVER;
-        }
+    public Scenery changeToRiver() {
+        return new River(this.getPersona(), new Enemy());
+    }
+
+    public Scenery changeToForest() {
+        return new Forest(this.getPersona(), new Enemy());
     }
 }
