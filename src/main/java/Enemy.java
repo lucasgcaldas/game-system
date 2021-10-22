@@ -1,8 +1,7 @@
-package entities;
-
 /**
  * Class responsible for instantiate
  * an Enemy
+ *
  * @author Lucas Gomes
  */
 public class Enemy {
@@ -35,6 +34,7 @@ public class Enemy {
     /**
      * Method responsible for calculate
      * the persona life after an attack
+     *
      * @return Integer
      */
     public Integer attack(Persona persona) {
@@ -44,6 +44,7 @@ public class Enemy {
     /**
      * Method responsible for calculate
      * the enemy life after a defense
+     *
      * @return Integer
      */
     public Integer defend() {

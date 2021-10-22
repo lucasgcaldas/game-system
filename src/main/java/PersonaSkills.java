@@ -1,10 +1,9 @@
-package entities;
-
 public interface PersonaSkills {
 
     /**
      * Method responsible for calculate
      * the persona life after an attack
+     *
      * @param enemy
      * @return Integer
      */
@@ -13,13 +12,15 @@ public interface PersonaSkills {
     /**
      * method responsible for calculate
      * the persona life after an attack
+     *
      * @return Integer
      */
-    Integer defend();
+    Integer defend(Enemy enemy);
 
     /**
      * method responsible for calculate
      * the persona life after an attack
+     *
      * @param enemy
      * @return Integer
      */

@@ -1,8 +1,7 @@
-package entities;
-
 /**
  * Enum responsible for instantiate
  * a set of equipments
+ *
  * @author Lucas Gomes
  */
 public enum EquipmentsEnum {
@@ -56,17 +55,19 @@ public enum EquipmentsEnum {
     };
 
     /**
-     * abstract method responsible for call
+     * Abstract method responsible for call
      * the number of improve damage in each equipment
      */
     abstract Integer improveDamage();
+
     /**
-     * abstract method responsible for call
+     * Abstract method responsible for call
      * the number of reduce damage in each equipment
      */
     abstract Integer reduceDamage();
+
     /**
-     * abstract method responsible for call
+     * Abstract method responsible for call
      * the number of inventory space
      */
     abstract Integer inventorySpace();

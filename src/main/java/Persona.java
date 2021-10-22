@@ -1,21 +1,19 @@
-package entities;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Abstract class that only
  * idealizes one type of character
+ *
  * @author Lucas Gomes
  */
-public abstract class Persona implements PersonaSkills{
+public abstract class Persona implements PersonaSkills {
 
     private Integer lifePoint;
     private Integer attackPoint;
     private Integer defensePoint;
-    private List<EquipmentsEnum> inventory;
+    private List<Equipment> inventory;
 
-    public Persona(Integer lifePoint, Integer attackPoint, Integer defensePoint, List<EquipmentsEnum> inventory) {
+    public Persona(Integer lifePoint, Integer attackPoint, Integer defensePoint, List<Equipment> inventory) {
         this.lifePoint = lifePoint;
         this.attackPoint = attackPoint;
         this.defensePoint = defensePoint;
@@ -34,7 +32,23 @@ public abstract class Persona implements PersonaSkills{
         return defensePoint;
     }
 
-    public List<EquipmentsEnum> getInventory() {
+    public List<Equipment> getInventory() {
         return inventory;
+    }
+
+    public void setInventory(List<Equipment> equipment) {
+        this.inventory = equipment;
+    }
+
+    /**
+     * method responsible for
+     * change the current equipment
+     * to other
+     *
+     * @param i
+     * @return Equipment
+     */
+    public Equipment changeEquipment(int i) {
+        return this.inventory.get(i);
     }
 }
