@@ -8,7 +8,7 @@ import java.util.List;
  * idealizes one type of character
  * @author Lucas Gomes
  */
-public abstract class Persona {
+public abstract class Persona implements PersonaSkills{
 
     private Integer lifePoint;
     private Integer attackPoint;
@@ -36,29 +36,5 @@ public abstract class Persona {
 
     public List<EquipmentsEnum> getInventory() {
         return inventory;
-    }
-
-    /**
-     * method responsible for calculate
-     * the persona life after an attack
-     */
-    public int attack(int enemyLife, Persona persona) {
-        return 0;
-    }
-
-    /**
-     * method responsible for calculate
-     * the persona life after an attack
-     */
-    public int defend(int wizardHp, Persona persona) {
-        return 0;
-    }
-
-    /**
-     * method responsible for calculate
-     * the persona life after an attack
-     */
-    public int usePotions(int enemyLife, Persona persona) {
-        return 0;
     }
 }
