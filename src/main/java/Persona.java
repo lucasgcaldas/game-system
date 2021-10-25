@@ -49,8 +49,10 @@ public abstract class Persona {
      */
     public Integer attack(Enemy enemy) {
         int upgradeAttack = 0;
-        for (int i = 0; i < this.getInventory().size(); i++) {
-            upgradeAttack += this.getInventory().get(i).getImproveDamage();
+        if (getInventory() != null){
+            for (int i = 0; i < this.getInventory().size(); i++) {
+                upgradeAttack += this.getInventory().get(i).getImproveDamage();
+            }
         }
         return enemy.getLifePoint() - this.getAttackPoint() - upgradeAttack;
     }
@@ -63,8 +65,10 @@ public abstract class Persona {
      */
     public Integer defend(Enemy enemy) {
         int upgradeDefend = 0;
-        for (int i = 0; i < this.getInventory().size(); i++) {
-            upgradeDefend += this.getInventory().get(i).getReduceDamage();
+        if (getInventory() != null) {
+            for (int i = 0; i < this.getInventory().size(); i++) {
+                upgradeDefend += this.getInventory().get(i).getReduceDamage();
+            }
         }
         return this.getLifePoint() + this.getDefensePoint() - enemy.getAttackPoint() + upgradeDefend;
     }
