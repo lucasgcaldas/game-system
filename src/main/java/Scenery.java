@@ -27,34 +27,4 @@ public abstract class Scenery {
     public Enemy getEnemy2() {
         return enemy2;
     }
-
-    /**
-     * Method responsible for change
-     * the current scenery to Desert
-     *
-     * @return Integer
-     */
-    public Scenery changeToDesert() {
-        return new Desert(this.getPersona(), new Enemy(), new Enemy());
-    }
-
-    /**
-     * Method responsible for change
-     * the current scenery to River
-     *
-     * @return Integer
-     */
-    public Scenery changeToRiver() {
-        return new River(this.getPersona(), new Enemy(), new Enemy());
-    }
-
-    /**
-     * Method responsible for change
-     * the current scenery to Forest
-     *
-     * @return Integer
-     */
-    public Scenery changeToForest() {
-        return new Forest(this.getPersona(), new Enemy(), new Enemy());
-    }
 }

@@ -11,12 +11,22 @@ public class Forest extends Scenery {
         super(persona, enemy1, enemy2);
     }
 
-    @Override
+    /**
+     * Method responsible for change
+     * the current scenery to Desert
+     *
+     * @return Integer
+     */
     public Scenery changeToDesert() {
         return new Desert(this.getPersona(), new Enemy(), new Enemy());
     }
 
-    @Override
+    /**
+     * Method responsible for change
+     * the current scenery to River
+     *
+     * @return Integer
+     */
     public Scenery changeToRiver() {
         return new River(this.getPersona(), new Enemy(), new Enemy());
     }

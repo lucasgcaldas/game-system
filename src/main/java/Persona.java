@@ -6,7 +6,7 @@ import java.util.List;
  *
  * @author Lucas Gomes
  */
-public abstract class Persona implements PersonaSkills {
+public abstract class Persona {
 
     private Integer lifePoint;
     private Integer attackPoint;
@@ -41,7 +41,47 @@ public abstract class Persona implements PersonaSkills {
     }
 
     /**
-     * method responsible for
+     * Method responsible for calculate
+     * the persona life after an attack
+     *
+     * @param enemy
+     * @return Integer
+     */
+    public Integer attack(Enemy enemy) {
+        int upgradeAttack = 0;
+        for (int i = 0; i < this.getInventory().size(); i++) {
+            upgradeAttack += this.getInventory().get(i).getImproveDamage();
+        }
+        return enemy.getLifePoint() - this.getAttackPoint() - upgradeAttack;
+    }
+
+    /**
+     * Method responsible for calculate
+     * the persona life after an attack
+     *
+     * @return Integer
+     */
+    public Integer defend(Enemy enemy) {
+        int upgradeDefend = 0;
+        for (int i = 0; i < this.getInventory().size(); i++) {
+            upgradeDefend += this.getInventory().get(i).getReduceDamage();
+        }
+        return this.getLifePoint() + this.getDefensePoint() - enemy.getAttackPoint() + upgradeDefend;
+    }
+
+    /**
+     * Method responsible for calculate
+     * the persona life after an attack
+     *
+     * @param enemy
+     * @return Integer
+     */
+    public Integer usePotions(Enemy enemy) {
+        return (int) (enemy.getLifePoint() - this.getAttackPoint() * 1.15);
+    }
+
+    /**
+     * Method responsible for
      * change the current equipment
      * to other
      *
