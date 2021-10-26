@@ -7,17 +7,14 @@ import java.util.List;
  *
  * @author Lucas Gomes
  */
-public class Wizard extends Persona {
+public class Wizard extends Hero {
 
     /**
      * Wizard Constructor
      *
-     * @param lifePoint
-     * @param attackPoint
-     * @param defensePoint
      * @param inventory
      */
-    public Wizard(Integer lifePoint, Integer attackPoint, Integer defensePoint, List<Equipment> inventory) {
-        super(lifePoint, attackPoint, defensePoint, inventory);
+    public Wizard(List<Equipment> inventory) {
+        super(100, 10, 5, inventory);
     }
 }

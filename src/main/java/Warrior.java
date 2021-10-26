@@ -7,18 +7,15 @@ import java.util.List;
  *
  * @author Lucas Gomes
  */
-public class Warrior extends Persona {
+public class Warrior extends Hero {
 
     /**
      * Warrior Constructor
      *
-     * @param lifePoint
-     * @param attackPoint
-     * @param defensePoint
      * @param inventory
      */
-    public Warrior(Integer lifePoint, Integer attackPoint, Integer defensePoint, List<Equipment> inventory) {
-        super(lifePoint, attackPoint, defensePoint, inventory);
+    public Warrior(List<Equipment> inventory) {
+        super(100, 8, 3, inventory);
     }
 
     /**

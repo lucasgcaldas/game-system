@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameTest {
 
-    private Wizard persona;
-//    private Warrior persona;
+    private Wizard hero;
+//    private Warrior hero;
     private Enemy enemy1;
     private Enemy enemy2;
     private Forest forest;
@@ -27,19 +27,19 @@ public class GameTest {
     @BeforeEach
     public void startEnemy() {
         Random random = new Random();
-        this.enemy1 = new Enemy(random.nextInt((80 - 70) + 1) + 70, random.nextInt((15 - 10) + 1) + 10, random.nextInt((8 - 3) + 1) + 3);
-        this.enemy2 = new Enemy(random.nextInt((90 - 85) + 1) + 85, random.nextInt((20 - 15) + 1) + 15, random.nextInt((10 - 5) + 1) + 5);
+        this.enemy1 = new Enemy(random);
+        this.enemy2 = new Enemy(random);
     }
 
     @BeforeEach
     @Description("If do you want to be a Warrior, comment the line 13 & 31 and uncomment the line 14, 32" +
                  "If do you want choose this equipments, uncomment the lines")
     public void startSceneryWithPerson() {
-        this.persona = new Wizard(100, 10, 5, null);
-//        this.persona = new Warrior(100, 8, 3, null);
-        this.forest = new Forest(this.persona, enemy1, enemy2);
-        this.desert = new Desert(this.persona, enemy1, enemy2);
-        this.river = new River(this.persona, enemy1, enemy2);
+        this.hero = new Wizard(null);
+//        this.hero = new Warrior(null);
+        this.forest = new Forest(this.hero, enemy1, enemy2);
+        this.desert = new Desert(this.hero, enemy1, enemy2);
+        this.river = new River(this.hero, enemy1, enemy2);
         //Equipments
         this.archery = new Equipment(EquipmentsEnum.ARCHERY);
         this.armor = new Equipment(EquipmentsEnum.ARMOR);
@@ -47,38 +47,38 @@ public class GameTest {
         equipments.add(archery);
         equipments.add(armor);
         equipments.add(sword);
-        persona.setInventory(equipments);
+        hero.setInventory(equipments);
     }
 
     @Test
     @DisplayName("Should change equipment")
     public void shouldChangeEquipment() {
-        persona.setInventory(equipments);
-        Assertions.assertEquals(equipments.get(1).getName() ,persona.changeEquipment(1).getName());
+        hero.setInventory(equipments);
+        Assertions.assertEquals(equipments.get(1).getName() , hero.changeEquipment(1).getName());
     }
 
     @Test
     @DisplayName("Should change the current scenery to desert")
     @Description("Check if it's the same from the persona's name, because it builds a new scenery")
     public void shouldChangeToDesert() {
-        Assertions.assertAll(() -> assertEquals(new Desert(persona, enemy1, enemy2).getPersona(), river.changeToDesert().getPersona()),
-                             () -> assertEquals(new Desert(persona, enemy1, enemy2).getPersona(), forest.changeToDesert().getPersona()));
+        Assertions.assertAll(() -> assertEquals(new Desert(hero, enemy1, enemy2).getHero(), river.changeToDesert().getHero()),
+                             () -> assertEquals(new Desert(hero, enemy1, enemy2).getHero(), forest.changeToDesert().getHero()));
     }
 
     @Test
     @DisplayName("Should change the current scenery to forest")
     @Description("Check if it's the same from the persona's name, because it builds a new scenery")
     public void shouldChangeToForest() {
-        Assertions.assertAll(() -> assertEquals(new Forest(persona, enemy1, enemy2).getPersona(), desert.changeToForest().getPersona()),
-                             () -> assertEquals(new Forest(persona, enemy1, enemy2).getPersona(), river.changeToForest().getPersona()));
+        Assertions.assertAll(() -> assertEquals(new Forest(hero, enemy1, enemy2).getHero(), desert.changeToForest().getHero()),
+                             () -> assertEquals(new Forest(hero, enemy1, enemy2).getHero(), river.changeToForest().getHero()));
     }
 
     @Test
     @DisplayName("Should change the current scenery to river")
     @Description("Check if it's the same from the persona's name, because it builds a new scenery")
     public void shouldChangeToRiver() {
-        Assertions.assertAll(() -> assertEquals(new River(persona, enemy1, enemy2).getPersona(), forest.changeToRiver().getPersona()),
-                             () -> assertEquals(new River(persona, enemy1, enemy2).getPersona(), desert.changeToRiver().getPersona()));
+        Assertions.assertAll(() -> assertEquals(new River(hero, enemy1, enemy2).getHero(), forest.changeToRiver().getHero()),
+                             () -> assertEquals(new River(hero, enemy1, enemy2).getHero(), desert.changeToRiver().getHero()));
     }
 
     @Test
@@ -88,8 +88,8 @@ public class GameTest {
         System.out.println("Enemy 1 life: " + enemy1.getLifePoint());
         System.out.println("Enemy 2 life: " + enemy2.getLifePoint());
 
-        Assertions.assertAll(() -> assertEquals(80 , persona.attack(enemy1)),
-                             () -> assertEquals(80 , persona.attack(enemy2)));
+        Assertions.assertAll(() -> assertEquals(80 , hero.attackEnemy(enemy1)),
+                             () -> assertEquals(80 , hero.attackEnemy(enemy2)));
     }
 
     @Test
@@ -99,8 +99,8 @@ public class GameTest {
         System.out.println("Enemy 1 attack: " + enemy1.getAttackPoint());
         System.out.println("Enemy 2 attack: " + enemy2.getAttackPoint());
 
-        Assertions.assertAll(() -> assertEquals(80 , persona.defend(enemy1)),
-                             () -> assertEquals(80 , persona.defend(enemy2)));
+        Assertions.assertAll(() -> assertEquals(80 , hero.defendFromEnemy(enemy1)),
+                             () -> assertEquals(80 , hero.defendFromEnemy(enemy2)));
     }
 
     @Test
@@ -110,8 +110,8 @@ public class GameTest {
         System.out.println("Enemy 1 life: " + enemy1.getLifePoint());
         System.out.println("Enemy 2 life: " + enemy2.getLifePoint());
 
-        Assertions.assertAll(() -> assertEquals(80 , persona.usePotions(enemy1)),
-                             () -> assertEquals(80 , persona.usePotions(enemy2)));
+        Assertions.assertAll(() -> assertEquals(80 , hero.usePotions(enemy1)),
+                             () -> assertEquals(80 , hero.usePotions(enemy2)));
     }
 
     @Test
@@ -121,8 +121,8 @@ public class GameTest {
         System.out.println("Enemy 1 attack point: " + enemy1.getAttackPoint());
         System.out.println("Enemy 2 attack point: " + enemy2.getAttackPoint());
 
-        Assertions.assertAll(() -> assertEquals(80 , enemy1.attack(this.persona)),
-                             () -> assertEquals(90 , enemy2.attack(this.persona)));
+        Assertions.assertAll(() -> assertEquals(80 , enemy1.attack(this.hero)),
+                             () -> assertEquals(90 , enemy2.attack(this.hero)));
     }
 
     @Test

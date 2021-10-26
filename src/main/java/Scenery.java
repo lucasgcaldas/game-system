@@ -6,19 +6,19 @@
  */
 public abstract class Scenery {
 
-    private Persona persona;
+    private Hero hero;
     private Enemy enemy1;
     private Enemy enemy2;
 
     /**
      * Scenery Constructor
      *
-     * @param persona
+     * @param hero
      * @param enemy1
      * @param enemy2
      */
-    public Scenery(Persona persona, Enemy enemy1, Enemy enemy2) {
-        this.persona = persona;
+    public Scenery(Hero hero, Enemy enemy1, Enemy enemy2) {
+        this.hero = hero;
         this.enemy1 = enemy1;
         this.enemy2 = enemy2;
     }
@@ -28,8 +28,8 @@ public abstract class Scenery {
      *
      * @return Persona
      */
-    public Persona getPersona() {
-        return persona;
+    public Hero getHero() {
+        return hero;
     }
 
     /**

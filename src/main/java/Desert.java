@@ -9,12 +9,12 @@ public class Desert extends Scenery {
 
     /**
      * Desert Constructor
-     * @param persona
+     * @param hero
      * @param enemy1
      * @param enemy2
      */
-    public Desert(Persona persona, Enemy enemy1, Enemy enemy2) {
-        super(persona, enemy1, enemy2);
+    public Desert(Hero hero, Enemy enemy1, Enemy enemy2) {
+        super(hero, enemy1, enemy2);
     }
 
     /**
@@ -24,7 +24,7 @@ public class Desert extends Scenery {
      * @return Integer
      */
     public Scenery changeToForest() {
-        return new Forest(this.getPersona(), new Enemy(), new Enemy());
+        return new Forest(this.getHero(), new Enemy(), new Enemy());
     }
 
     /**
@@ -34,6 +34,6 @@ public class Desert extends Scenery {
      * @return Integer
      */
     public Scenery changeToRiver() {
-        return new River(this.getPersona(), new Enemy(), new Enemy());
+        return new River(this.getHero(), new Enemy(), new Enemy());
     }
 }

@@ -1,60 +1,29 @@
+import java.util.Random;
+
 /**
  * Class responsible for instantiate
  * an Enemy
  *
  * @author Lucas Gomes
  */
-public class Enemy {
-
-    private Integer lifePoint;
-    private Integer attackPoint;
-    private Integer defensePoint;
+public class Enemy extends Persona{
 
     /**
      * Enemy Constructor
      *
-     * @param lifePoint
-     * @param attackPoint
-     * @param defensePoint
+     * @param random
      */
-    public Enemy(Integer lifePoint, Integer attackPoint, Integer defensePoint) {
-        this.lifePoint = lifePoint;
-        this.attackPoint = attackPoint;
-        this.defensePoint = defensePoint;
+    public Enemy(Random random) {
+        super(random.nextInt((80 - 70) + 1) + 75, random.nextInt((15 - 10) + 1) + 13, random.nextInt((8 - 3) + 1) +5);
     }
 
     /**
      * Empty Constructor
      */
     public Enemy() {
+        super();
     }
 
-    /**
-     * Get lifePoint
-     *
-     * @return Integer
-     */
-    public Integer getLifePoint() {
-        return lifePoint;
-    }
-
-    /**
-     * Get attackPoint
-     *
-     * @return Integer
-     */
-    public Integer getAttackPoint() {
-        return attackPoint;
-    }
-
-    /**
-     * Get defensePoint
-     *
-     * @return Integer
-     */
-    public Integer getDefensePoint() {
-        return defensePoint;
-    }
 
     /**
      * Method responsible for calculate
@@ -62,8 +31,8 @@ public class Enemy {
      *
      * @return Integer
      */
-    public Integer attack(Persona persona) {
-        return persona.getLifePoint() - this.getAttackPoint();
+    public Integer attack(Hero hero) {
+        return hero.getLifePoint() - this.getAttackPoint();
     }
 
     /**
