@@ -10,23 +10,48 @@ public class Enemy {
     private Integer attackPoint;
     private Integer defensePoint;
 
+    /**
+     * Enemy Constructor
+     *
+     * @param lifePoint
+     * @param attackPoint
+     * @param defensePoint
+     */
     public Enemy(Integer lifePoint, Integer attackPoint, Integer defensePoint) {
         this.lifePoint = lifePoint;
         this.attackPoint = attackPoint;
         this.defensePoint = defensePoint;
     }
 
+    /**
+     * Empty Constructor
+     */
     public Enemy() {
     }
 
+    /**
+     * Get lifePoint
+     *
+     * @return Integer
+     */
     public Integer getLifePoint() {
         return lifePoint;
     }
 
+    /**
+     * Get attackPoint
+     *
+     * @return Integer
+     */
     public Integer getAttackPoint() {
         return attackPoint;
     }
 
+    /**
+     * Get defensePoint
+     *
+     * @return Integer
+     */
     public Integer getDefensePoint() {
         return defensePoint;
     }

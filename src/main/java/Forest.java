@@ -7,6 +7,13 @@
  */
 public class Forest extends Scenery {
 
+    /**
+     * Forest Constructor
+     *
+     * @param persona
+     * @param enemy1
+     * @param enemy2
+     */
     public Forest(Persona persona, Enemy enemy1, Enemy enemy2) {
         super(persona, enemy1, enemy2);
     }
@@ -15,7 +22,7 @@ public class Forest extends Scenery {
      * Method responsible for change
      * the current scenery to Desert
      *
-     * @return Integer
+     * @return Scenery
      */
     public Scenery changeToDesert() {
         return new Desert(this.getPersona(), new Enemy(), new Enemy());
@@ -25,7 +32,7 @@ public class Forest extends Scenery {
      * Method responsible for change
      * the current scenery to River
      *
-     * @return Integer
+     * @return Scenery
      */
     public Scenery changeToRiver() {
         return new River(this.getPersona(), new Enemy(), new Enemy());

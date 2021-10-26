@@ -13,6 +13,14 @@ public abstract class Persona {
     private Integer defensePoint;
     private List<Equipment> inventory;
 
+    /**
+     * Persona Constructor
+     *
+     * @param lifePoint
+     * @param attackPoint
+     * @param defensePoint
+     * @param inventory
+     */
     public Persona(Integer lifePoint, Integer attackPoint, Integer defensePoint, List<Equipment> inventory) {
         this.lifePoint = lifePoint;
         this.attackPoint = attackPoint;
@@ -20,22 +28,47 @@ public abstract class Persona {
         this.inventory = inventory;
     }
 
+    /**
+     * Get getLifePoint
+     *
+     * @return Integer
+     */
     public Integer getLifePoint() {
         return lifePoint;
     }
 
+    /**
+     * Get attackPoint
+     *
+     * @return Integer
+     */
     public Integer getAttackPoint() {
         return attackPoint;
     }
 
+    /**
+     * Get defensePoint
+     *
+     * @return Integer
+     */
     public Integer getDefensePoint() {
         return defensePoint;
     }
 
+    /**
+     * Get inventory
+     *
+     * @return List<Equipment>
+     */
     public List<Equipment> getInventory() {
         return inventory;
     }
 
+    /**
+     * Set equipment
+     *
+     * @param equipment
+     */
     public void setInventory(List<Equipment> equipment) {
         this.inventory = equipment;
     }
@@ -49,7 +82,7 @@ public abstract class Persona {
      */
     public Integer attack(Enemy enemy) {
         int upgradeAttack = 0;
-        if (getInventory() != null){
+        if (getInventory() != null) {
             for (int i = 0; i < this.getInventory().size(); i++) {
                 upgradeAttack += this.getInventory().get(i).getImproveDamage();
             }
@@ -61,6 +94,7 @@ public abstract class Persona {
      * Method responsible for calculate
      * the persona life after an attack
      *
+     * @param enemy
      * @return Integer
      */
     public Integer defend(Enemy enemy) {

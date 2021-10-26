@@ -7,6 +7,12 @@
  */
 public class Desert extends Scenery {
 
+    /**
+     * Desert Constructor
+     * @param persona
+     * @param enemy1
+     * @param enemy2
+     */
     public Desert(Persona persona, Enemy enemy1, Enemy enemy2) {
         super(persona, enemy1, enemy2);
     }
