@@ -9,6 +9,7 @@ public abstract class Scenery {
     private Hero hero;
     private Enemy enemy1;
     private Enemy enemy2;
+    private Enemy enemy;
 
     /**
      * Scenery Constructor
@@ -21,6 +22,11 @@ public abstract class Scenery {
         this.hero = hero;
         this.enemy1 = enemy1;
         this.enemy2 = enemy2;
+    }
+
+    public Scenery(Hero hero, Enemy enemy) {
+        this.hero = hero;
+        this.enemy = enemy;
     }
 
     /**
@@ -48,5 +54,13 @@ public abstract class Scenery {
      */
     public Enemy getEnemy2() {
         return enemy2;
+    }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
+
+    public Integer getDragonPoint(){
+        return EnemyEnum.DRAGON.attack();
     }
 }

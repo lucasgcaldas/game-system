@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @author Lucas Gomes
  */
-public class Wizard extends Hero {
+public class Wizard extends Hero{
 
     /**
      * Wizard Constructor
@@ -16,5 +16,9 @@ public class Wizard extends Hero {
      */
     public Wizard(List<Equipment> inventory) {
         super(100, 10, 5, inventory);
+    }
+
+    public Integer attackUsingMagic(Enemy enemy){
+        return enemy.getLifePoint() - (this.getAttackPoint() + enemy.getMagicPoint());
     }
 }

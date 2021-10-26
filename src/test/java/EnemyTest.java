@@ -32,8 +32,8 @@ class EnemyTest {
         System.out.println("Enemy 1 attack point: " + enemy1.getAttackPoint());
         System.out.println("Enemy 2 attack point: " + enemy2.getAttackPoint());
 
-        Assertions.assertAll(() -> assertEquals(80, enemy1.attack(this.hero)),
-                () -> assertEquals(90, enemy2.attack(this.hero)));
+        Assertions.assertAll(() -> assertEquals(80, enemy1.attackHero(this.hero)),
+                () -> assertEquals(90, enemy2.attackHero(this.hero)));
     }
 
     @Test

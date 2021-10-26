@@ -6,15 +6,33 @@ import java.util.Random;
  *
  * @author Lucas Gomes
  */
-public class Enemy extends Persona{
+public class Enemy extends Persona {
+
+    private Integer magicPoint;
+    private Integer desertDamage;
+    private Integer forestDamage;
+    private Integer riverDamage;
 
     /**
-     * Enemy Constructor
+     * Enemy Constructor of generic enemies
      *
      * @param random
      */
     public Enemy(Random random) {
-        super(random.nextInt((80 - 70) + 1) + 75, random.nextInt((15 - 10) + 1) + 13, random.nextInt((8 - 3) + 1) +5);
+        super(random.nextInt((80 - 70) + 1) + 70, random.nextInt((15 - 10) + 1) + 10, random.nextInt((8 - 3) + 1) + 3);
+    }
+
+    /**
+     * Enemy Constructor of new kind of enemies
+     *
+     * @param enemyEnum
+     */
+    public Enemy(EnemyEnum enemyEnum) {
+        super(enemyEnum.life(), enemyEnum.attack(), enemyEnum.defense());
+        this.magicPoint = enemyEnum.magicPointDamage();
+        this.desertDamage = enemyEnum.attackPointOnDesert();
+        this.forestDamage = enemyEnum.attackPointOnForest();
+        this.riverDamage = enemyEnum.attackPointOnRiver();
     }
 
     /**
@@ -24,6 +42,32 @@ public class Enemy extends Persona{
         super();
     }
 
+    /**
+     * Get upgradeDamage
+     *
+     * @return Integer
+     */
+    public Integer getMagicPoint() {
+        return magicPoint;
+    }
+
+    /**
+     * Get desertDamage
+     *
+     * @return Integer
+     */
+    public Integer getDesertDamage() {
+        return desertDamage;
+    }
+
+    /**
+     * Get forestDamage
+     *
+     * @return Integer
+     */
+    public Integer getForestDamage() {
+        return forestDamage;
+    }
 
     /**
      * Method responsible for calculate
@@ -31,7 +75,7 @@ public class Enemy extends Persona{
      *
      * @return Integer
      */
-    public Integer attack(Hero hero) {
+    public Integer attackHero(Hero hero) {
         return hero.getLifePoint() - this.getAttackPoint();
     }
 

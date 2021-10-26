@@ -5,7 +5,7 @@
  *
  * @author Lucas Gomes
  */
-public class River extends Scenery {
+public class River extends Scenery implements BattleOnScenery {
 
     /**
      * River Constructor
@@ -16,6 +16,16 @@ public class River extends Scenery {
      */
     public River(Hero hero, Enemy enemy1, Enemy enemy2) {
         super(hero, enemy1, enemy2);
+    }
+
+    /**
+     * River Constructor
+     *
+     * @param hero
+     * @param enemy
+     */
+    public River(Hero hero, Enemy enemy) {
+        super(hero, enemy);
     }
 
     /**
@@ -36,5 +46,10 @@ public class River extends Scenery {
      */
     public Scenery changeToForest() {
         return new Forest(this.getHero(), new Enemy(), new Enemy());
+    }
+
+    @Override
+    public Integer attackOnScenery(Enemy enemy, Hero hero) {
+        return enemy.getLifePoint() - (hero.getAttackPoint() + enemy.getMagicPoint() + enemy.getDesertDamage());
     }
 }

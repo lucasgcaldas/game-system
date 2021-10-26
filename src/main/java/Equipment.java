@@ -13,6 +13,7 @@ public class Equipment {
 
     /**
      * Equipment Construct
+     *
      * @param name
      */
     public Equipment(EquipmentsEnum name) {
@@ -24,6 +25,7 @@ public class Equipment {
 
     /**
      * Get name
+     *
      * @return EquipmentsEnum
      */
     public EquipmentsEnum getName() {
@@ -32,6 +34,7 @@ public class Equipment {
 
     /**
      * Get improveDamage
+     *
      * @return int
      */
     public int getImproveDamage() {
@@ -40,6 +43,7 @@ public class Equipment {
 
     /**
      * Get reduceDamage
+     *
      * @return int
      */
     public int getReduceDamage() {
@@ -48,6 +52,7 @@ public class Equipment {
 
     /**
      * Get inventorySpace
+     *
      * @return int
      */
     public int getInventorySpace() {

@@ -11,12 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class WizardTest {
 
     private Wizard wizard;
-    private Enemy enemy1, enemy2;
+    private Enemy enemy1, enemy2, dragon, goblin, zombie;
 
     @BeforeEach
     public void start() {
         Random random = new Random();
         this.wizard = new Wizard(null);
+        this.dragon = new Enemy(EnemyEnum.DRAGON);
+        this.goblin = new Enemy(EnemyEnum.GOBLIN);
+        this.zombie = new Enemy(EnemyEnum.ZOMBIE);
         this.enemy1 = new Enemy(random);
         this.enemy2 = new Enemy(random);
     }
@@ -52,5 +55,20 @@ class WizardTest {
 
         Assertions.assertAll(() -> assertEquals(80, wizard.usePotions(enemy1)),
                 () -> assertEquals(80, wizard.usePotions(enemy2)));
+    }
+
+    @Test
+    public void shouldAttackNewEnemy() {
+        System.out.println("Dragon life: " + dragon.getLifePoint());
+        System.out.println("Goblin life: " + goblin.getLifePoint());
+        System.out.println("Zombie life: " + zombie.getLifePoint());
+        System.out.println("-----------------");
+        System.out.println("Wizard improve : 10 + " + dragon.getMagicPoint() + " points on " + EnemyEnum.DRAGON);
+        System.out.println("Wizard improve : 10 + " + goblin.getMagicPoint() + " points on " + EnemyEnum.GOBLIN);
+        System.out.println("Wizard improve : 10 + " + zombie.getMagicPoint() + " points on " + EnemyEnum.ZOMBIE);
+
+        Assertions.assertAll(() -> assertEquals(67, wizard.attackUsingMagic(dragon)),
+                             () -> assertEquals(62, wizard.attackUsingMagic(goblin)),
+                             () -> assertEquals(58, wizard.attackUsingMagic(zombie)));
     }
 }

@@ -97,4 +97,8 @@ public abstract class Hero extends Persona{
     public Equipment changeEquipment(int i) {
         return this.inventory.get(i);
     }
+
+    public Integer attackOnScenery(Enemy enemy, Scenery scenery){
+        return enemy.getLifePoint() - scenery.getDragonPoint() - this.getAttackPoint();
+    }
 }
