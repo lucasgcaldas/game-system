@@ -27,7 +27,7 @@ The tables below summarizes this assignment:
 
 ## - Class Diagram 
 ### Diagram v.3
-<image>![novo diagrama 2](https://user-images.githubusercontent.com/88175144/139054690-e4a0db34-2c59-4aa7-a8f2-80a8f43fc107.PNG)
+<image>![diagramaFinal](https://user-images.githubusercontent.com/88175144/139298979-5c5e4c2b-6bc9-40ce-80f8-d303f5abee8e.png)
 
 ### Diagram v.2
 <image>![novo diagrama](https://user-images.githubusercontent.com/88175144/138783393-552ff330-16fb-4641-bc3a-e0f381adbe4b.PNG)
