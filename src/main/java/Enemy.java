@@ -61,6 +61,15 @@ public class Enemy extends Persona {
     }
 
     /**
+     * Get riverDamage
+     *
+     * @return Integer
+     */
+    public Integer getRiverDamage() {
+        return riverDamage;
+    }
+
+    /**
      * Get forestDamage
      *
      * @return Integer

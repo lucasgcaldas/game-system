@@ -50,6 +50,6 @@ public class River extends Scenery implements BattleOnScenery {
 
     @Override
     public Integer attackOnScenery(Enemy enemy, Hero hero) {
-        return enemy.getLifePoint() - (hero.getAttackPoint() + enemy.getMagicPoint() + enemy.getDesertDamage());
+        return enemy.getLifePoint() - (hero.getAttackPoint() + enemy.getMagicPoint() + enemy.getRiverDamage());
     }
 }
