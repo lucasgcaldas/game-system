@@ -1,9 +1,11 @@
 ## **Game Tutorial**
 
-In this assignment, was used many different concepts of Object-Oriented Programming and it will be explained by steps.
+In this assignment, about my internship program, was solicited that I build a backend of a kind of RPG game, using many concepts of object-oriented programming, and it will be explained by steps.
+
+The task is more detailed in README.md, however I needed to build two kind of heroes and different enemies. All these could attack and defend, but some has special attacks and the heroes can use equipments to improve your attack or protect yourself. The battle are started in one kind of scenery, and it's possible move between them. 
 
 ### __Building a character__
-To build an enemy, a warrior and a wizard, was created a Persona class. This class is responsible to is assigning the lifePoint, attackPoint and defensePoint. It's possible see it in Hero class too, that is a parent class and extends your atributes and methods to Warrior and Wizard class.That is, was used inheritance, because the classes Enemy and Hero, acquires all the properties of a Persona class and after, the classes Wizard and Warrior, acquires all the properties and behaviors of a Hero class, in order not to repeat code and take advantage of attributes and methods to the child class. It's possible see it in this code below. 
+To build an enemy, a warrior and a wizard, was created a Persona class. This class is responsible to is assigning the lifePoint, attackPoint and defensePoint. It's possible see it in Hero class too, that is a parent class and extends your attributes and methods to Warrior and Wizard class.That is, was used inheritance, because the classes Enemy and Hero, acquires all the properties of a Persona class and after, the classes Wizard and Warrior, acquires all the properties and behaviors of a Hero class, in order not to repeat code and take advantage of attributes and methods to the child class. It's possible see it in this code below. 
 
 ```java
 public abstract class Persona{
@@ -41,7 +43,7 @@ As an example the three classes (Hero, Wizard and Warrior), being the Hero class
 
 * ### __Creating an Enemy__
 
-As enemy exteds Persona, it has all atributes and more your own atribute that is 
+As enemy extends Persona, it has all attributes and more your own attribute that is 
 ```java
 public class Enemy extends Persona {
 
@@ -52,9 +54,9 @@ public class Enemy extends Persona {
     ...
 ```
 
-There are two options to create an enemy, one is by a randomic points and another is using an EnemyEnum, that has a three kind of enemys
+There are two options to create an enemy, one is by a random points and another is using an EnemyEnum, that has a three kind of enemies
 
-* Randomic points
+* Random points
 ```java
     public Enemy(Random random) {
         super(random.nextInt((80 - 70) + 1) + 70, random.nextInt((15 - 10) + 1) + 10, random.nextInt((8 - 3) + 1) + 3);
@@ -121,11 +123,11 @@ As when there is a Dragon in forest the wizard damage must be the double, return
         this.riverDamage = enemyEnum.attackPointOnRiver();
     }
 ```
-In this case, was passed as argument in Enemy constructor a kind of EnemyEnum and depending on the argument these four methods magicPointDamage(), attackPointOnDesert(), attackPointOnForest() and attackPointOnRiver() returns differents numbers, that is the same action in many different ways. That is called polymorphism, when one task is performed in different way. 
+In this case, was passed as argument in Enemy constructor a kind of EnemyEnum and depending on the argument these four methods magicPointDamage(), attackPointOnDesert(), attackPointOnForest() and attackPointOnRiver() returns different numbers, that is the same action in different ways. That is called polymorphism, when one task is performed in different way. 
 
 * ### __Creating an Equipment__
 
-Initially, was declared an abstract method to be override in each enum and return different numbers.
+Initially, was declared an abstract method to be overridden in each enum and return different numbers.
 ```java
 public enum EquipmentsEnum {
     ARMOR {
@@ -154,7 +156,7 @@ public enum EquipmentsEnum {
     ...
 }
 ```
-To build an equipment was necessary an EquipmentsEnum, improveDamage, reduceDamage and inventorySpace.Was used polymorphism when one task is performed in different way, like in this code bellow 
+To build equipment was necessary an EquipmentsEnum, improveDamage, reduceDamage and inventorySpace.Was used polymorphism when one task is performed in different way, like in this code bellow 
 ```java
 public class Equipment {
 
@@ -171,11 +173,11 @@ public class Equipment {
         }
 }
 ```
-In this case, was passed as argument on Equipment constructor a kind of EquipmentEnum and depending on the argument  these three methods improveDamage(), reduceDamage() and inventorySpace() returns differents numbers, that is the same action in many different ways. 
+In this case, was passed as argument on Equipment constructor a kind of EquipmentEnum and depending on the argument  these three methods improveDamage(), reduceDamage() and inventorySpace() returns different numbers, that is the same action in many ways. 
 
 * ### __Creating a Warrior or a Wizard__
 
-As Warrior and Wizard exteds Hero, it have all atributes and more your own methods.
+As Warrior and Wizard extends Hero, it has all attributes and more your own methods.
 * __Wizard__ 
 
 By default, lifePoint is 100, attackPoint is 10 and defensePoint is 5.
@@ -194,7 +196,7 @@ public class Wizard extends Hero{
 ```
 
 * Before
-In a oldest way to use this function is passing as argument a hero, that can be a Wizard or a Warrior, and when this function was called, the user choose what kind of hero it wants.
+In oldest way to use this function is passing as argument a hero, that can be a Wizard or a Warrior, and when this function was called, the user choose what kind of hero it wants.
 ```java
 public class Hero extends Persona{
     ...
@@ -258,9 +260,9 @@ public class Warrior extends Hero {
 
 The usePotions method was override to change the calculation instead of being 1.15, becomes 1.10.
 
-### __Building a Scnery__
+### __Building a Scenery__
 
-To build a scnery, it's necessary a Hero, and two kind of enemys. The Scenery class is abstract and only is possible instanciate a River, Desert or Forest. 
+To build a scenery, it's necessary a Hero, and two kind of enemies. The Scenery class is abstract and only is possible instantiate a River, Desert or Forest. 
 
 There are two kind of constructors in each scenery, one has a Hero and two Enemies, and other has one Hero and one Enemy.
 
@@ -285,7 +287,7 @@ public interface BattleOnScenery {
     Integer attackOnScenery(Enemy enemy, Hero hero);
 }
 ```
-This method is overrrid in these differents classes and returns differents numbers.
+This method is override in these different classes and returns different numbers.
 
 **The differences in each scenery are the methods to change the scenery and the override method attackOnScenery.**
 
@@ -348,3 +350,215 @@ public Scenery changeToDesert() {
     }
 }    
 ```
+
+### __JUnit 5 Tests__
+
+JUnit is an open-source framework,that is a Java unit testing framework, and it is used to write and run repeatable automated tests.
+
+Before, it's important to know about JUnit annotations and methods.
+
+* **@Test**
+
+Tells JUnit what a class's test methods are.
+
+* **@BeforeEach**
+
+Starts before all tests the method that contains this annotation.
+
+* **@DisplayName**
+
+Shows the test method name in more detail.
+
+* **@Description**
+
+Shows a short description of the test method.
+
+* **Assertions**
+
+Is a collection of methods that assert whether certain common test conditions match what is expected. Was used __*Assertions.assertAll()*__ to test more than one method in the same time and __*assertEquals()*__ to test the method through an expected result.
+
+* ### __Testing a hero__
+
+To test a Warrior or a Wizard, it's the same, but the expected results are different.
+WizardTest has all tests than WarriorTest and shouldAttackNewEnemy(). 
+```java
+class WizardTest {
+
+    private Wizard wizard;
+    private Enemy enemy1, enemy2, dragon, goblin, zombie;
+
+    @BeforeEach
+    public void start() {
+        Random random = new Random();
+        this.wizard = new Wizard(null);
+        this.dragon = new Enemy(EnemyEnum.DRAGON);
+        this.goblin = new Enemy(EnemyEnum.GOBLIN);
+        this.zombie = new Enemy(EnemyEnum.ZOMBIE);
+        this.enemy1 = new Enemy(random);
+        this.enemy2 = new Enemy(random);
+    }
+
+    @Test
+    public void shouldAttackEnemy() 
+        Assertions.assertAll(() -> assertEquals(80, wizard.attackEnemy(enemy1)),
+                             () -> assertEquals(80, wizard.attackEnemy(enemy2)));
+    }
+
+    @Test
+    public void shouldDefendTheEnemyAttack() {
+        Assertions.assertAll(() -> assertEquals(80, wizard.defendFromEnemy(enemy1)),
+                             () -> assertEquals(80, wizard.defendFromEnemy(enemy2)));
+    }
+    
+    @Test
+    public void shouldAttackEnemyWithPotion() {
+        Assertions.assertAll(() -> assertEquals(80, wizard.usePotions(enemy1)),
+                             () -> assertEquals(80, wizard.usePotions(enemy2)));
+    }
+
+    @Test
+    public void shouldAttackNewEnemy() {
+        Assertions.assertAll(() -> assertEquals(67, wizard.attackUsingMagic(dragon)),
+                             () -> assertEquals(62, wizard.attackUsingMagic(goblin)),
+                             () -> assertEquals(58, wizard.attackUsingMagic(zombie)));
+    }
+}
+```
+
+In other words, all these tests should do something, and that's it what it does. If some test isn't equal than expected, an error is shown and the real expected result too. 
+
+* ### __Testing an enemy__
+
+Here, as the enemy points are random, it's impossible previously know the real expected result, only after the test, and then, it's possible calculate to know it's working very well.
+
+```java
+    @Test
+    public void shouldAttackPersona() {
+        Assertions.assertAll(() -> assertEquals(80, enemy1.attackHero(this.hero)),
+                             () -> assertEquals(90, enemy2.attackHero(this.hero)));
+    }
+
+    @Test
+    public void shouldDefendTheEPersonaAttack() {
+        Assertions.assertAll(() -> assertEquals(80, enemy1.defend()),
+                             () -> assertEquals(80, enemy2.defend()));
+    }
+```
+* ### __Testing an equipment__
+
+In this test class, was tested if the equipment improve damage, reduce damage and take up space in the inventory.
+
+```java
+class EquipmentTest {
+    ...
+    @Test
+    public void shouldImproveDamage() {
+        Assertions.assertAll(() -> assertEquals(0, armor.getImproveDamage()),
+                             () -> assertEquals(8, sword.getImproveDamage()),
+                             () -> assertEquals(12, archery.getImproveDamage()));
+    }
+
+    @Test
+    public void shouldReduceDamage() {
+        Assertions.assertAll(() -> assertEquals(6, armor.getReduceDamage()),
+                             () -> assertEquals(3, sword.getReduceDamage()),
+                             () -> assertEquals(0, archery.getReduceDamage()));
+    }
+
+    @Test
+    public void shouldShowInventorySpace() {
+        Assertions.assertAll(() -> assertEquals(4, armor.getInventorySpace()),
+                             () -> assertEquals(2, sword.getInventorySpace()),
+                             () -> assertEquals(3, archery.getInventorySpace()));
+    }
+}
+```
+
+* ### __Testing on scenery__
+In all sceneries the methods are equals, but the results are different. It's worth remembering that in the forest the dragon has a double attack and this is tested here.
+
+There is the __*shouldChangeToForest()*__ method too, but they are in others sceneries test.
+
+```java
+class RiverTest {
+    ...
+    @Test
+    public void shouldChangeToDesert() {
+        assertEquals(new Forest(hero, enemy1, enemy2).getHero(), forest.changeToDesert().getHero());
+    }
+
+    @Test
+    public void shouldChangeToRiver() {
+        assertEquals(new River(hero, enemy1, enemy2).getHero(), forest.changeToRiver().getHero());
+    }
+
+    @Test
+    public void shouldDuplicateDamageOnDragon(){
+        Assertions.assertAll(() -> assertEquals(47, forestDragon.attackOnScenery(dragon, hero)),
+                             () -> assertEquals(62, forestGoblin.attackOnScenery(goblin, hero)),
+                             () -> assertEquals(58, forestZombie.attackOnScenery(zombie, hero)));
+    }
+}
+```
+* ### __Black Box Testing__
+
+This kind of test, that is also known as behavioral testing, is a software testing method in which the functionalities of software applications are tested without having implementation details and internal paths. Black Box Testing mainly focuses on input and output of software applications and it is entirely based on software requirements and specifications. 
+
+|How it works|
+|--|
+|Initially, the requirements and specifications of the system are examined|
+|Tester determines expected outputs for all those inputs|
+|Software tester constructs test cases with the selected inputs|
+|The test cases are executed|
+|Software tester compares the actual outputs with the expected outputs|
+|Defects if any are fixed and re-tested|
+
+It's possible see it in GameTest class, that all tests of all classes are putten in same class.
+
+```java
+public class GameTest {
+
+    private Wizard hero;
+//    private Warrior hero;
+    private Enemy enemy1;
+    private Enemy enemy2;
+    private Forest forest;
+    private Desert desert;
+    private River river;
+    private Equipment archery;
+    private Equipment armor;
+    private Equipment sword;
+    private List<Equipment> equipments = new ArrayList<>();
+
+    @BeforeEach
+    public void startEnemy() {
+        Random random = new Random();
+        this.enemy1 = new Enemy(random);
+        this.enemy2 = new Enemy(random);
+    }
+
+    @BeforeEach
+    public void startSceneryWithPerson() {
+        this.hero = new Wizard(null);
+//        this.hero = new Warrior(null);
+        this.forest = new Forest(this.hero, enemy1, enemy2);
+        this.desert = new Desert(this.hero, enemy1, enemy2);
+        this.river = new River(this.hero, enemy1, enemy2);
+        //Equipments
+        this.archery = new Equipment(EquipmentsEnum.ARCHERY);
+        this.armor = new Equipment(EquipmentsEnum.ARMOR);
+        this.sword = new Equipment(EquipmentsEnum.SWORD);
+        equipments.add(archery);
+        equipments.add(armor);
+        equipments.add(sword);
+        hero.setInventory(equipments);
+    }
+    ...
+}
+```
+
+Therefore, all classes were instantiated in this test class, so that all tests were executed.
+
+* ### __Conclusion__
+
+By the end, to build this backend of a little game system it was necessary to know so many contents about java and object orientation programming and to turn it more elegant and professional was used JUnit 5 tool to construct a solid workspace to test all classes. For sure for me was a good way to improve my knowledge and learn more about these techniques.
